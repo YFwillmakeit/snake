@@ -1,0 +1,63 @@
+{
+  /*
+    路径：**表示任意目录
+          * 表示任意文件
+  */
+  // 指定哪些ts文件需要被编译
+  "include": [
+    "./src/**/*"
+  ],
+  // // 不需要被编译的文件目录
+  // "exclude": [
+    
+  // ],
+
+  "compilerOptions": {
+    // 用来指定ts被编译为js的版本
+    "target": "ES6",
+
+    // 指定要使用的模块化规范
+    "module": "es6",
+
+    // 用来指定项目中要使用的库
+    "lib": ["ES6","DOM"],
+
+    // 指定编译后文件所在的目录
+    "outDir": "./dist",
+
+    // 将代码合并为一个文件  仅支持 "amd" 和 "system" 模块
+    // "outFile": "./dist/app.js",
+
+    // 是否对js文件进行编译，默认是false
+    "allowJs": true,
+
+    // 是否以ts的要求检查js
+    "checkJs": true,
+
+    // 是否移除注释
+    "removeComments": true,
+
+    // 不生成编译后的文件
+    "noEmit": false,
+
+    // 当有错误时不生成编译后的文件
+    "noEmitOnError": true,
+
+
+    // 所有严格检查的总开关  等于下面四个开启
+    "strict": true,
+
+
+    // // 编译后的js文件 开启严格模式
+    // "alwaysStrict": true,
+
+    // // 不允许隐式any
+    // "noImplicitAny": true,
+
+    // // 不允许不明确类型的this
+    // "noImplicitThis": true,
+
+    // // 严格检查空值  获取dom可能为null
+    // "strictNullChecks": true,
+  }
+}
