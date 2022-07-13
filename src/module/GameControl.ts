@@ -25,6 +25,27 @@ class GameControl {
     document.addEventListener('keydown', this.keydownHandler.bind(this));
   }
 
+  // 重新开始游戏
+  restart() {
+    // 清空蛇身体
+    const head = this.snake.head;
+    this.snake.snakeEle.innerHTML = '';
+    this.snake.snakeEle.append(head);
+    this.snake.setX = 0;
+    this.snake.setY = 0;
+
+    // 清空分数
+    this.score.setScore = 0;
+    this.score.setLevel = 1;
+
+    // 改变食物位置
+    this.food.change();
+
+    // 清空方向键，开始游戏
+    this.direction = '';
+    this.isLive = true;
+  }
+
   keydownHandler(event: KeyboardEvent) {
     this.direction = event.key;
     this.run();
@@ -62,6 +83,8 @@ class GameControl {
     } catch (error: any) {
       this.isLive = false;
       console.log(error.message);
+      alert('GAME OVER!');
+      this.restart();
     }
 
     // 定时调用，自己移动

@@ -30,6 +30,16 @@ class Score {
       this.levelEle.innerHTML = ++this.level + '';
     }
   }
+
+  set setScore(score: number) {
+    this.score = score;
+    this.scoreEle.innerHTML = score + '';
+  }
+
+  set setLevel(level: number) {
+    this.level = level;
+    this.levelEle.innerHTML = level + '';
+  }
 }
 
 export default Score
