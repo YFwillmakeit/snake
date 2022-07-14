@@ -27,8 +27,28 @@
         position: absolute;
         width: 10px;
         height: 10px;
-        background-color: black;
+        background-color: #FDA108;
         border: 1px solid white;
+      }
+
+      .snake-head::before {
+        content: '';
+        position: absolute;
+        left: 1px;
+        top: 3px;
+        width: 2px;
+        height: 2px;
+        background-color: black;
+      }
+
+      .snake-head::after {
+        content: '';
+        position: absolute;
+        right: 1px;
+        top: 3px;
+        width: 2px;
+        height: 2px;
+        background-color: black;
       }
     }
 
@@ -49,8 +69,8 @@
         transform: rotate(45deg);
       }
 
-
     }
+
   }
 
   .record-wrap {

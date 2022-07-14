@@ -49,6 +49,31 @@ class Snake {
     this.checkHeadAgainstBody();
   }
 
+  // 设置蛇眼睛位置
+  public set setEyesDirection(direction: string) {
+    let rt = '';
+    switch (direction) {
+      case 'ArrowUp':
+        rt = '0deg';
+        break;
+
+      case 'ArrowDown':
+        rt = '0deg';
+        break;
+
+      case 'ArrowLeft':
+        rt = '90deg';
+        break;
+
+      case 'ArrowRight':
+        rt = '-90deg';
+        break;
+
+    }
+
+    this.head.style.transform = "rotate(" + rt + ")";
+  }
+
   addBody() {
     this.snakeEle.insertAdjacentHTML('beforeend', '<div></div>');
   }

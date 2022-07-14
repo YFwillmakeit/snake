@@ -49,6 +49,7 @@ class GameControl {
   keydownHandler(event: KeyboardEvent) {
     this.direction = event.key;
     this.run();
+    this.snake.setEyesDirection = this.direction;
   }
 
   // 控制蛇移动
