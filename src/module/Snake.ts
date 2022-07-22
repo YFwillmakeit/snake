@@ -1,12 +1,15 @@
+import Barrier from './Barrier';
 class Snake {
   snakeEle: HTMLElement;// 蛇的容器
   head: HTMLElement; // 头部
   body: HTMLCollection;// 身体
+  barrier: Barrier;// 障碍物
 
   constructor() {
     this.snakeEle = document.querySelector('.snake')!;
     this.head = document.querySelector('.snake > div')!;
     this.body = this.snakeEle.getElementsByTagName('div')!;
+    this.barrier = new Barrier();
   }
 
   public get getX(): number {
@@ -29,6 +32,9 @@ class Snake {
 
     this.isNotBumpWall(value) && (this.head.style.left = value + 'px');
 
+    // 移动后检查头部撞到障碍物没有
+    this.checkBumpBarrier();
+
     // 移动后检查头部撞到身体没有
     this.checkHeadAgainstBody();
   }
@@ -44,6 +50,9 @@ class Snake {
     this.moveBody();
 
     this.isNotBumpWall(value) && (this.head.style.top = value + 'px');
+
+    // 移动后检查头部撞到障碍物没有
+    this.checkBumpBarrier();
 
     // 移动后检查头部撞到身体没有
     this.checkHeadAgainstBody();
@@ -91,7 +100,7 @@ class Snake {
     }
   }
 
-  // 是否没撞墙
+  // 是否没撞到墙
   isNotBumpWall(value: number): boolean {
     if ((value >= 0) && (value <= 390)) {
       return true
@@ -100,7 +109,18 @@ class Snake {
     }
   }
 
-  // 检查掉头
+  // 检查撞到障碍物
+  checkBumpBarrier() {
+    const barrierEleArr = this.barrier.barrierEles;
+    for (let i = 0, len = barrierEleArr.length; i < len; i++) {
+      const barrierEle = barrierEleArr[i] as HTMLElement;
+      if (barrierEle.offsetLeft === this.getX && barrierEle.offsetTop === this.getY) {
+        throw new Error('撞到障碍物了')
+      }
+    }
+  }
+
+  // 检查蛇掉头
   checkTurnAround(value: number, direction: string): number {
     switch (direction) {
       case 'X':
@@ -132,7 +152,7 @@ class Snake {
     return value
   }
 
-  // 检查头撞身体
+  // 检查蛇头撞身体
   checkHeadAgainstBody() {
     // 如果头部坐标等于身体中的任意一节，说明撞了
     for (let i = 1, len = this.body.length; i < len; i++) {

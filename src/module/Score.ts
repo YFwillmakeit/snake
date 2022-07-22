@@ -1,4 +1,3 @@
-
 class Score {
   score = 0;
   level = 1;

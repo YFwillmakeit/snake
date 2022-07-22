@@ -38,8 +38,9 @@ class GameControl {
     this.score.setScore = 0;
     this.score.setLevel = 1;
 
-    // 改变食物位置
-    this.food.change();
+    // 还原食物位置
+    this.food.element.style.left = 40 + 'px';
+    this.food.element.style.top = 40 + 'px';
 
     // 清空方向键，开始游戏
     this.direction = '';
